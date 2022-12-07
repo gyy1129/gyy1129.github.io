@@ -135,44 +135,42 @@
                     </div>
                     <div id="main">
                         <div class="article">
-    <div>
-        <h1>Hello World </h1>
-    </div>
-    <div class="info">
-        <span class="date">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
-            </span>
-            2022/12/5
+  <div>
+    <h1>Hello World</h1>
+  </div>
+  <div class="info">
+    <span class="date">
+      <span class="icon">
+        <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+      </span>
+      2022/12/5
+    </span>
+    
+    <span class="category">
+      <a href="/categories/hello/">
+        <span class="icon">
+          <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
         </span>
+        hello
+      </a>
+    </span>
+     
+    <span class="tags">
+      <span class="icon">
+        <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+      </span>
+      
+      <span class="tag">
         
-        <span class="category">
-            <a href="/categories/hello/">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
-                </span>
-                hello
-            </a>
-        </span>
-        
-        
-        <span class="tags">
-            <span class="icon">
-                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/test/" style="color: #00bcd4">
-                    test
-                </a>
-            </span>
-            
-        </span>
-        
-    </div>
-    <div class="content" v-pre>
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+        <a href="/tags/test/" style="color: #03a9f4">test</a>
+      </span>
+      
+    </span>
+    
+  </div>
+  <div class="content-aside">
+    
+    <div class="content" v-pre style="width: 100%"><p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
 </code></pre>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
@@ -185,12 +183,17 @@
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
 </code></pre>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-    </div>
-    
-    
-    
 </div>
+     
+  </div>
+
+   
+  <div id="comment">
+    <div id="giscus-container" class="giscus"></div>
+  </div>
+   
+</div>
+
                         <footer id="footer">
     <div class="footer-wrap">
         <div>
@@ -219,6 +222,23 @@
         <script src="/js/background.min.js"></script>
         <script src="/js/fireworks.min.js"></script>
         
+
+<script
+    src="https://giscus.app/client.js"
+    data-repo="gyy1129/myrepo"
+    data-repo-id="R_kgDOIkOEZg"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOIkOEZs4CS7xJ"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async
+></script>
 
 
     </body>

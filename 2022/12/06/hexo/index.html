@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Archives | G.Yun. Blog</title>
+        <title>Hexo相关说明 | G.Yun. Blog</title>
         <meta name="author" content="G.Yun.">
         <meta name="description" content="About Life and Technology">
         <meta name="keywords" content="">
@@ -134,82 +134,98 @@
 </nav>
                     </div>
                     <div id="main">
-                        
-<script src="/js/searcher.js"></script>
-<script>searcher.init("/search.json");</script>
+                        <div class="article">
+  <div>
+    <h1>Hexo相关说明</h1>
+  </div>
+  <div class="info">
+    <span class="date">
+      <span class="icon">
+        <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+      </span>
+      2022/12/6
+    </span>
+     
+    <span class="tags">
+      <span class="icon">
+        <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+      </span>
+      
+      <span class="tag">
+        
+        <a href="/tags/hexo/" style="color: #ffa2c4">hexo</a>
+      </span>
+      
+    </span>
+    
+  </div>
+  <div class="content-aside">
+     
+    <div class="content" v-pre><h3 id="window-相关指令"><a href="#window-相关指令" class="headerlink" title="window 相关指令"></a>window 相关指令</h3><pre><code class="bash">创建文件夹  md 文件夹名
+创建新文件 type nul &gt;文件名
+创建有内容文件 echo &quot;123&quot; &gt;文件名
 
-<div id="archives">
-    
-    <div class="search-mask" style="z-index: 3"></div>
-    <input class="search-bar" placeholder="Search..." style="z-index: 4">
-    
-    
-    <div class="timeline" path="/2022/12/06/hexo/" style="z-index: 2">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2022/12/6</div>
-            <a href="/2022/12/06/hexo/">
-                <h3>hexo相关说明</h3>
-            </a>
-            <div class="info">
-                
-                
-                <span class="tags">
-                    <span class="icon">
-                        <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                    </span>
-                    
-                    <span class="tag">
-                        
-                        <a href="/tags/hexo/" style="color: #ffa2c4">
-                            hexo
-                        </a>
-                    </span>
-                    
-                </span>
-                
-            </div>
-        </div>
-    </div>
-    
-    <div class="timeline" path="/2022/12/05/hello-world/" style="z-index: 1">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2022/12/5</div>
-            <a href="/2022/12/05/hello-world/">
-                <h3>Hello World</h3>
-            </a>
-            <div class="info">
-                
-                <span class="category">
-                    <a href="/categories/hello/">
-                        <span class="icon">
-                            <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
-                        </span>
-                        hello
-                    </a>
-                </span>
-                
-                
-                <span class="tags">
-                    <span class="icon">
-                        <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                    </span>
-                    
-                    <span class="tag">
-                        
-                        <a href="/tags/test/" style="color: #00a596">
-                            test
-                        </a>
-                    </span>
-                    
-                </span>
-                
-            </div>
-        </div>
-    </div>
-    
+查看文件内容 type 文件名
+查看文件目录及子文件 dir
+
+删除空文件夹 rd 文件夹名
+删除文件(/删除文件夹) del 文件名
+</code></pre>
+<span id="more"></span>
+
+<h3 id="hexo-blog-搭建"><a href="#hexo-blog-搭建" class="headerlink" title="hexo blog 搭建"></a>hexo blog 搭建</h3><pre><code class="bash">node -v
+npm -v
+npm install -g hexo-cli
+hexo -v
+hexo init myblog
+cd myblog
+hexo server // 启动本地服务器
+http://localhost:4000/ // 本地访问
+</code></pre>
+<h4 id="github-创建新仓库"><a href="#github-创建新仓库" class="headerlink" title="github 创建新仓库"></a>github 创建新仓库</h4><p>注意仓库名 需要是自己 github 账户名 (eg:账户名为 gyy1129 -&gt; gyy1129.github.io)</p>
+<p>安装部署插件</p>
+<pre><code class="bash">npm install --save hexo-deployer-git
+</code></pre>
+<h4 id="配置-config-yml-文件"><a href="#配置-config-yml-文件" class="headerlink" title="配置 _config.yml 文件"></a>配置 _config.yml 文件</h4><pre><code class="bash">deploy:
+  type: &#39;git&#39;
+  repo: https://github.com/gyy1129/gyy1129.github.io.git
+  branch: master
+</code></pre>
+<pre><code class="bash">hexo deploy // Deploy to remote sites
+</code></pre>
+<h4 id="创建新页面"><a href="#创建新页面" class="headerlink" title="创建新页面"></a>创建新页面</h4><pre><code class="bash">hexo new &quot;first passage&quot;
+hexo clean // 清理
+hexo generate // Generate static files
+</code></pre>
+<h4 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h4><p><a target="_blank" rel="noopener" href="https://hexo.io/themes/">https://hexo.io/themes/</a></p>
+<p>收藏主题</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/79E/hexo-theme-quiet">https://github.com/79E/hexo-theme-quiet</a><br><a target="_blank" rel="noopener" href="https://korilin.github.io/">https://korilin.github.io/</a><br><a target="_blank" rel="noopener" href="https://redefine.evanluo.top/">https://redefine.evanluo.top/</a><br><a target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">https://github.com/argvchs/hexo-theme-particlex</a><br><a target="_blank" rel="noopener" href="https://github.com/next-theme/awesome-next#live-preview">https://github.com/next-theme/awesome-next#live-preview</a><br><a target="_blank" rel="noopener" href="https://theme-next.iissnan.com/getting-started.html">https://theme-next.iissnan.com/getting-started.html</a><br><a target="_blank" rel="noopener" href="https://shoka.lostyu.me/computer-science/note/theme-shoka-doc/">https://shoka.lostyu.me/computer-science/note/theme-shoka-doc/</a><br><a target="_blank" rel="noopener" href="https://yun.yunyoujun.cn/demo/">https://yun.yunyoujun.cn/demo/</a><br><a target="_blank" rel="noopener" href="https://butterfly.js.org/">https://butterfly.js.org/</a>   <a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">https://github.com/jerryc127/hexo-theme-butterfly</a>    <a target="_blank" rel="noopener" href="https://www.mahaofei.com/post/8ee3ad86.html">https://www.mahaofei.com/post/8ee3ad86.html</a></p>
+<h4 id="需要调整"><a href="#需要调整" class="headerlink" title="需要调整"></a>需要调整</h4><ol>
+<li>文章｜分类｜标签 ✔️</li>
+<li>文章 目录展示 ✔️</li>
+<li>评论功能 ✔️</li>
+<li>目录 样式优化</li>
+<li></li>
+</ol>
 </div>
+    <div class="article-aside">
+      <div class="sticky-layout">
+        <div class="aside-toc">
+          <div class="toc-head">目录</div>
+          <div class="toc-body"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#window-%E7%9B%B8%E5%85%B3%E6%8C%87%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">window 相关指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hexo-blog-%E6%90%AD%E5%BB%BA"><span class="toc-number">2.</span> <span class="toc-text">hexo blog 搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#github-%E5%88%9B%E5%BB%BA%E6%96%B0%E4%BB%93%E5%BA%93"><span class="toc-number">2.1.</span> <span class="toc-text">github 创建新仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-config-yml-%E6%96%87%E4%BB%B6"><span class="toc-number">2.2.</span> <span class="toc-text">配置 _config.yml 文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B0%E9%A1%B5%E9%9D%A2"><span class="toc-number">2.3.</span> <span class="toc-text">创建新页面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98"><span class="toc-number">2.4.</span> <span class="toc-text">更换主题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9C%80%E8%A6%81%E8%B0%83%E6%95%B4"><span class="toc-number">2.5.</span> <span class="toc-text">需要调整</span></a></li></ol></li></ol></div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+   
+  <div id="comment">
+    <div id="giscus-container" class="giscus"></div>
+  </div>
+   
+</div>
+
                         <footer id="footer">
     <div class="footer-wrap">
         <div>
@@ -238,6 +254,23 @@
         <script src="/js/background.min.js"></script>
         <script src="/js/fireworks.min.js"></script>
         
+
+<script
+    src="https://giscus.app/client.js"
+    data-repo="gyy1129/myrepo"
+    data-repo-id="R_kgDOIkOEZg"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOIkOEZs4CS7xJ"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async
+></script>
 
 
     </body>
