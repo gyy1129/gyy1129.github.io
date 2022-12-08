@@ -347,10 +347,12 @@ pre .copycode,
   height: 100vh;
   position: relative;
   display: flex;
+  align-items: center;
 }
 #home-head .home-info {
   position: relative;
-  margin: auto;
+  margin: 0 6em;
+  /* margin: auto; */
 }
 #home-head .home-info .info {
   position: absolute;
@@ -1150,6 +1152,7 @@ footer .footer-icon {
 .article .article-aside .sticky-layout .aside-toc .toc-body ol .toc-link {
   padding: 1px 6px;
   color: #666261;
+  transition: all 0.2s ease-in-out;
 }
 .article .article-aside .sticky-layout .aside-toc .toc-body ol .toc-link:hover {
   color: #66afef;
