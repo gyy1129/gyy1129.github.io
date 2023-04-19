@@ -1,0 +1,689 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>咖啡入门 | G.Yun. Blog</title>
+        <meta name="author" content="G.Yun.">
+        <meta name="description" content="About Life and Technology">
+        <meta name="keywords" content="">
+        <!-- <link rel="icon" href="images/avatar.png"> -->
+        <link rel="icon" href="/images/favicon.ico">
+        <script src="https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js" type="module"></script>
+        <script src="https://cdn.staticfile.org/font-awesome/6.2.0/js/all.min.js"></script>
+        <link rel="stylesheet" href="/css/fonts.min.css">
+        <link rel="stylesheet" href="/css/particlex.css">
+        <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
+        <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <meta name="generator" content="Hexo 5.4.2"></head>
+    <body>
+        <canvas id="background" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1"></canvas>
+        <canvas id="fireworks" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:32767"></canvas>
+        <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:2147483647;justify-content:space-between;background:#fff;transition:all 0.3s ease-out;-webkit-user-select:none;-moz-user-select:none;user-select:none"><div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center"><div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center"><div><h2>LOADING...</h2><p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p><div><img alt="loading" src="/loading.gif"></div></div></div></div></div>
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="showpage" style="display: -not-none">
+                    <div id="menushow">
+                        <nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">G.Yun. Blog</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+        <a href="/books">
+            <i class="fa-solid fa-book fa-fw"></i>
+            <span>&ensp;books</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menushow" id="phone-menu">
+        <div class="curtain" @click="menushow = !menushow" v-show="menushow"></div>
+        <div class="title" @click="menushow = !menushow">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;G.Yun. Blog</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menushow">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+            <a href="/books">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-book fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">books</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        <!-- <script src="/js/toc.js"></script>
+<script>
+  toc.init();
+</script> -->
+<div class="article">
+  <div>
+    <h1>咖啡入门</h1>
+  </div>
+  <div class="info">
+    <span class="date">
+      <span class="icon">
+        <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+      </span>
+      2023/4/19
+    </span>
+    
+    <span class="category">
+      <a href="/categories/life/">
+        <span class="icon">
+          <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
+        </span>
+        life
+      </a>
+    </span>
+     
+    <span class="tags">
+      <span class="icon">
+        <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+      </span>
+      
+      <span class="tag">
+        
+        <a href="/tags/life/" style="color: #ff7d73">life</a>
+      </span>
+      
+    </span>
+    
+  </div>
+  <div class="content-aside">
+     
+    <div class="content" v-pre><h1 id="咖啡起源"><a href="#咖啡起源" class="headerlink" title="咖啡起源"></a>咖啡起源</h1><p><code>咖啡</code>一词源自阿拉伯语，意思是<code>植物饮料</code>，起源于埃塞俄比亚西南部的高原地区。</p>
+<p>作为咖啡原产地，世界 99.9% 的咖啡树种都能在埃塞俄比亚找到，因此享有「咖啡基因库」的美誉。</p>
+<span id="more"></span>
+
+<h2 id="咖啡是如何被发现的？"><a href="#咖啡是如何被发现的？" class="headerlink" title="咖啡是如何被发现的？"></a>咖啡是如何被发现的？</h2><ul>
+<li><p>最广为流传的说法是，1000 多年前，牧羊人考迪发现羊吃了一种红色小果子后，变得异常兴奋，进而发现了咖啡。</p>
+</li>
+<li><p>另一种说法是，因野火偶然烧毁了一片咖啡林，烧烤咖啡的香味引起了周围居民的注意。</p>
+</li>
+</ul>
+<h2 id="咖啡豆是什么豆？"><a href="#咖啡豆是什么豆？" class="headerlink" title="咖啡豆是什么豆？"></a>咖啡豆是什么豆？</h2><p>豆，不管是黄豆、绿豆、红豆，都属于植物中的豆科。而咖啡树则属于茜草科，从植物的属性来说，虽然咖啡豆叫豆，但本质并不是豆。</p>
+<p>咖啡生豆是咖啡树上结的咖啡果的核，咖啡果也被称为咖啡樱桃。<br><img src="/images/coffee/%E5%92%96%E5%95%A1%E6%A0%91.jpg" alt="咖啡树"></p>
+<p>咖啡果里边长这样，它的果核就是我们所知的咖啡生豆。<br><img src="/images/coffee/%E5%92%96%E5%95%A1%E8%B1%86.jpeg" alt="咖啡豆"></p>
+<p>咖啡生豆再经过一系列的脱水、去壳、烘焙等加工手段才会成为我们常见的咖啡豆。<br><img src="/images/coffee/%E5%92%96%E5%95%A1%E7%94%9F%E8%B1%86%E5%88%B0%E5%92%96%E5%95%A1%E8%B1%86.jpeg" alt="咖啡生豆到咖啡豆"></p>
+<h2 id="咖啡的冲泡技术发展简史"><a href="#咖啡的冲泡技术发展简史" class="headerlink" title="咖啡的冲泡技术发展简史"></a>咖啡的冲泡技术发展简史</h2><p>公元 6 世纪：盖拉族嚼食咖啡果子与咖特草。</p>
+<p>9 至 11 世纪：波斯名医以咖啡入药。</p>
+<p>1400 至 1470 年：咖啡教父夏狄利与达巴尼倡导「咖许」与咖瓦饮料。这时人们还在泡煮咖啡果肉，甚至丢弃了咖啡核（豆）。</p>
+<p>1500 年在叙利亚，由于冶金技术的发展，人们发明了烘焙技术并加入了研磨的工艺，终于可以磨豆了。</p>
+<p>16 世纪土耳其，人们第一次把咖啡渣和咖啡分离。一开始是通过纱布（法兰绒）。但是法兰绒的问题很明显：由于咖啡中有油脂，所以油脂会留在纱布上，重复使用后，纱布会散发出恶臭。</p>
+<p>17 世纪在维也纳，首次有了在咖啡中添加牛奶，并配以可颂面包的饮用方法。</p>
+<p>1906 年，德国的梅丽塔班兹女士用吸墨水的纸做了世界上第一个手冲滤杯，这种模式也被沿用至今。</p>
+<p>后来，随着科学技术的发展，在意大利，工程师发明了快速萃取咖啡的方式，也就是我们现在的「意式咖啡」。</p>
+<p>美式咖啡则是欧洲人当时为了把咖啡卖给美国人，在意式浓缩咖啡中加入水而成的。</p>
+<p>精品咖啡的概念是 1974 年「精品咖啡之母」俄娜姆来提出的。</p>
+<h1 id="咖啡豆都有哪些品种"><a href="#咖啡豆都有哪些品种" class="headerlink" title="咖啡豆都有哪些品种"></a>咖啡豆都有哪些品种</h1><p>在世界范围内，原生咖啡豆主要分为三类：<code>阿拉比卡 Arabica</code>、 <code>坎尼弗拉 Canephora</code> （这个品类只有一个豆种：<code>罗布斯塔 Robusta</code> ）和<code>利比利卡 Liberica</code>。</p>
+<p><img src="/images/coffee/%E5%8E%9F%E7%94%9F%E5%92%96%E5%95%A1%E8%B1%86%E5%AF%B9%E6%AF%94.webp" alt="三种原生咖啡豆对比"></p>
+<blockquote>
+<p>阿拉比卡 Arabica</p>
+</blockquote>
+<p>现在精品咖啡基本上用的都是阿拉比卡，它的风味更加精致。苦度低，酸甜度高，属于<code>酸香型</code>咖啡。</p>
+<p>成分上，阿拉比卡咖啡的咖啡因含量较低，脂肪和糖的含量比较丰富，因此气味柔和、口感清新微甜，有时会带一些清爽怡人的酸味，受到许多咖啡爱好者的喜爱。</p>
+<p>阿拉比卡咖啡抗虫能力弱，种植海拔高，结果实慢，因此，多用于新鲜的咖啡制作。</p>
+<blockquote>
+<p>罗布斯塔 Robusta</p>
+</blockquote>
+<p>罗布斯塔易于种植，产量大且廉价，风味比较粗糙，常被用于即溶咖啡（其萃取出的咖啡液大约是阿拉比卡种的两倍）、罐装咖啡、液体咖啡等工业生产咖啡上，也被称作<code>商业豆</code>。</p>
+<p>罗布斯塔种有独特且强烈的香味（被称为<code>罗布味</code>，有些人认为是霉臭味）与苦味，如果取 2—3% 的比例混合到其他咖啡里，那整杯咖啡都成了罗布味了。所以，罗布斯塔种咖啡豆是不能作为单品咖啡豆饮用。</p>
+<p>其咖啡因的含量远高于阿拉比卡种，大约为 3.2% 左右。</p>
+<blockquote>
+<p>利比利卡 Liberica</p>
+</blockquote>
+<p>比较小众，只占 3%～ 5%，一般不能单独喝，口感偏咸。</p>
+<hr>
+<table>
+<thead>
+<tr>
+<th align="center">种类</th>
+<th align="center">特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">阿拉比卡豆</td>
+<td align="center">苦度低，酸甜度高，风味多样，属于<code>酸香型</code>咖啡</td>
+</tr>
+<tr>
+<td align="center">罗布斯塔豆</td>
+<td align="center">苦度更高，口感更加醇厚</td>
+</tr>
+<tr>
+<td align="center">利比利卡豆</td>
+<td align="center">一般不能单独喝，口感偏咸</td>
+</tr>
+</tbody></table>
+<h1 id="咖啡的主产区及风味特色"><a href="#咖啡的主产区及风味特色" class="headerlink" title="咖啡的主产区及风味特色"></a>咖啡的主产区及风味特色</h1><p>咖啡树只能种植于热带和亚热带，主要介于南北回归线之间，温度在 15 度～ 20 度之间，这些产区被称为「咖啡带 Coffee belt」。</p>
+<p><img src="/images/coffee/%E5%92%96%E5%95%A1%E5%B8%A6.webp" alt="咖啡带"></p>
+<blockquote>
+<p>非洲产区</p>
+</blockquote>
+<p>非洲分布着众多精品咖啡产区，如埃塞俄比亚、肯尼亚、卢旺达、坦桑尼亚等，非洲豆的风味以花香、果香为主，有着明亮、愉悦的酸，典型的是埃塞俄比亚（其首都也有花都的美誉），缺点是醇厚度不够。</p>
+<p><strong>埃塞俄比亚</strong>是非洲最大的阿拉比卡产国，全境可划分为九大产区，其中最为知名的当属<code>西达摩</code>和<code>耶加雪菲</code>。<code>耶加雪菲</code>本是西达摩的一个副产区，但是由于当地咖啡的生产方式以及风味太过于突出，故而从西达摩独立出来。</p>
+<p><code>耶加雪菲</code>具有浓郁的茉莉花香、柑橘香、果香，《世界咖啡学》的作者评价<code>耶加雪菲</code>只有一句话：「咖啡入口，百花盛开」。</p>
+<blockquote>
+<p>美洲产区</p>
+</blockquote>
+<p>美洲咖啡主产区分布于哥伦比亚、巴西、智利和危地马拉等地，风味以坚果、可可为主，味道醇厚，余韵足。缺点是香气不足，甜度和酸度表现比较中庸。</p>
+<p>美洲有世界上咖啡产量最大的巴西、哥伦比亚，也有将<code>蜜处理</code>发扬光大的哥斯达黎加；有依靠火山土壤闻名遐迩的危地马拉和夏威夷，也有培育出<code>帕卡马拉</code>的萨尔瓦多，以及凭借<code>瑰夏</code>走红于世的巴拿马。</p>
+<blockquote>
+<p>亚洲产区</p>
+</blockquote>
+<p>亚洲主要种植区包括越南、印度、云南、缅甸、泰国、印度尼西亚、巴布新几内亚（属于大洋洲，但是从风味上归为亚洲）。</p>
+<p>亚洲产区有两宗「最」：</p>
+<p>1.印度尼西亚是亚洲最广为人知的咖啡产国，著名的有黄金曼特宁、曼特宁。</p>
+<p>2.越南是世界上最大的罗布斯塔咖啡豆产国。所以越南出好咖啡的比率是比较低的。</p>
+<blockquote>
+<p>国内咖啡</p>
+</blockquote>
+<p>中国 99% 的咖啡都产自云南，主要有德宏、保山、普洱、临沧四大产区。这里的咖啡，口感醇厚，风味均衡，带有坚果、焦糖、甚至巧克力的香气。</p>
+<p>云南咖啡的种植历史要追溯到 1988 年，雀巢在进入中国（1989 年）前考察，发现只有云南普洱地区适合种植咖啡。于是他们和当地政府合作，扶持农民种植咖啡并统一采购，这就是所谓的<code>统购豆</code>。</p>
+<p>为了降低种植成本，又对品质要求不高，雀巢并没有打算种阿拉比卡。但是云南海拔较高（阿拉比卡适宜在较高海拔种植，罗布斯塔则相对低洼的地方种植），完全种植罗布斯塔也不对，所以就对树种进行了改良，诞生了有阿拉比卡基因的罗布斯塔，也被称为「卡蒂姆」。</p>
+<p>除了地域因素以外，不同产地的咖啡豆具有不同的风味特征还有以下原因：</p>
+<p>由于咖啡树较长的生长周期，咖啡农为了平衡收益，会在咖啡树边种上经济作物(<code>套种</code>)。</p>
+<p>套种经济作物往往具有当地特色，同时也会影响咖啡的风味。这也是非洲咖啡有花果风味，美洲咖啡有坚果可可风味等的原因之一。</p>
+<hr>
+<table>
+<thead>
+<tr>
+<th align="center">地区</th>
+<th align="center">特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">非洲</td>
+<td align="center">以花、水果为主，典型的是埃塞俄比亚；而花香和果香（明亮的柑橘酸）也是非洲豆的共性。其缺点在于醇厚度不够</td>
+</tr>
+<tr>
+<td align="center">美洲</td>
+<td align="center">以坚果、可可为主。偏醇厚，但缺点是香气不足、整体偏平庸一些</td>
+</tr>
+<tr>
+<td align="center">亚洲</td>
+<td align="center">主要产地如印度、印度尼西亚、云南等。典型的套种作物包括橡胶、茶、烟草等。醇厚度高，咖啡因含量高</td>
+</tr>
+</tbody></table>
+<h1 id="咖啡豆处理方式"><a href="#咖啡豆处理方式" class="headerlink" title="咖啡豆处理方式"></a>咖啡豆处理方式</h1><p>常见的三种方法：<code>日晒法</code>、<code>水洗法</code>、<code>蜜处理</code></p>
+<ol>
+<li><p>日晒法</p>
+<p>把咖啡平铺开，在太阳底下晒。是现存最古老的处理方法，在水资源匮乏的地区最为常见，其要求当地气候极为干燥。咖农采摘完咖啡果之后，要在 8-24 小时内，把咖啡铺开晾晒，并且手工挑选出一些不好的豆子。</p>
+<p>日晒法的<code>特点</code>：</p>
+<ul>
+<li>理论上，日晒由于保存了完整的果实，更能保存咖啡完整的风味。</li>
+<li>日晒发酵多半有酒香，相对于水洗豆而言，酸度较低，甜度较高，醇厚度较高。</li>
+</ul>
+<p>日晒法的<code>缺点</code>：</p>
+<ul>
+<li>多雨、潮湿的环境不适合。在以前，下雨了也没有办法，泡湿了继续晒，因此会对咖啡品质造成很大影响。</li>
+<li>脏，咖啡果是直接晒的，不经过清洗。</li>
+</ul>
+</li>
+<li><p>水洗法</p>
+<ul>
+<li>在山坡上砌一个鲜果池，把咖啡豆放到里面，然后用水将鲜果冲到脱皮机里。</li>
+<li>咖啡果脱完皮之后，还剩果胶及内部的结构，然后再进入下一个池子，进行浸泡脱胶（即水洗咖啡的发酵过程）(根据发酵手法的不同，发酵的时间通常为 12 小时至 6 天)。</li>
+<li>在脱胶过程中，没熟的豆子就会浮上来，就可以对咖啡豆进行筛选和分级了。</li>
+<li>发酵完成后，留下的就是只有带羊皮纸和银皮的豆子，再把这些豆子拿去晒。</li>
+</ul>
+<p>水洗豆的<code>特点</code>：</p>
+<p>相较日晒豆，酸度明亮（甜味在前期就被洗掉了），层次感没有那么丰富，但是口感纯粹、干净。</p>
+<p>水洗法的<code>缺点</code>：</p>
+<ul>
+<li>水洗法对水池的要求非常高，池子和水的洁净度会影响豆子的质量。所以，维护水池的成本也比较高。</li>
+<li>豆子也可能被机器破坏，所以脱胶的管理非常重要。</li>
+</ul>
+</li>
+<li><p>蜜处理</p>
+<p>蜜处理是在咖啡果脱完皮还剩果胶及内部的结构时，直接拿去暴晒，所以这种处理方法也被称为「半日晒」、「果胶日晒」。</p>
+<p>区分不同蜜处理的关键在于对这剩下果胶的处理上：保留果胶比例及干燥速度与方式</p>
+<ul>
+<li>黄蜜：40%左右的果胶被去除；干燥方式需要最为直接的吸热，接受最多光照干燥，持续 8 天左右达到水分含量稳定值。</li>
+<li>红蜜：25%左右的果胶被去除；相比较黄蜜，干燥时间更久，并且减少阳光直接曝晒的时间，甚至用到遮光棚，持续 12 天左右。</li>
+<li>黑蜜：几乎不去除果胶；干燥用时最久，最少持续 2 周时间，用到遮盖物，避免阳光太强烈，防止干燥太快，让糖分转化更充分。</li>
+</ul>
+<p><img src="/images/coffee/%E8%9C%9C%E5%A4%84%E7%90%86.jpeg" alt="蜜处理"></p>
+</li>
+</ol>
+<h1 id="咖啡豆烘焙程度"><a href="#咖啡豆烘焙程度" class="headerlink" title="咖啡豆烘焙程度"></a>咖啡豆烘焙程度</h1><p>咖啡的风味与咖啡豆的烘焙程度也很大的关系。</p>
+<p>一般咖啡豆的烘焙过程大致会有以下几个阶段：<strong>干燥</strong> —&gt; <strong>脱水</strong> —&gt; <strong>一爆</strong> —&gt; <strong>二爆</strong> —&gt; <strong>结束</strong>。在这一连串的过程中，咖啡豆的内在成分也会产生一连串的化学变化，给咖啡带来不同的风味。</p>
+<blockquote>
+<p>何为<code>一爆</code>、<code>二爆</code>？<br>是指 咖啡豆受热膨胀，产生大量气体冲破细胞壁，使豆子发生爆裂的现象。</p>
+</blockquote>
+<p>根据烘焙程度的不同，一般分为：<code>浅度烘焙</code>、<code>中度烘焙</code>、<code>深度烘焙</code>，更细致的划分，如介于浅度与中度之间的<code>中浅度烘焙</code>、介于中度与深度之间的<code>中深度烘焙</code>等。</p>
+<table>
+<thead>
+<tr>
+<th align="center">烘焙程度</th>
+<th align="center">特点</th>
+<th align="center">风味</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">浅度烘焙</td>
+<td align="center">豆子呈浅棕色，表面无油脂，硬度高</td>
+<td align="center">酸味突出，酸质明亮上扬，少苦或不苦，醇厚度一般</td>
+</tr>
+<tr>
+<td align="center">中度烘焙</td>
+<td align="center">豆子是棕色的，表面有少量油脂</td>
+<td align="center">口感柔润、均衡，开始出现甜味，液体变醇厚</td>
+</tr>
+<tr>
+<td align="center">深度烘焙</td>
+<td align="center">豆子呈深棕色，表面泛油光</td>
+<td align="center">基本失去了原产地风味，恰到好处的深烘咖啡会有坚果、巧克力和焦糖的风味</td>
+</tr>
+</tbody></table>
+<p><img src="/images/coffee/%E5%92%96%E5%95%A1%E8%B1%86%E5%AF%B9%E6%AF%94.png" alt="咖啡豆对比"></p>
+<p>烘焙方式也没有所谓的好坏，只有是否适合咖啡豆本身以及是否对你的胃口。不同的处理方法会产生不同的风味，可以根据自己的口味去选择。</p>
+<h1 id="品味咖啡的酸甜苦"><a href="#品味咖啡的酸甜苦" class="headerlink" title="品味咖啡的酸甜苦"></a>品味咖啡的酸甜苦</h1><ol>
+<li><p>苦</p>
+<p>首先是<code>豆子品种</code>，不同品种的咖啡豆，苦度大小并不相同。按大品类划分，市面上常见的豆子为罗布斯塔豆和阿拉比卡豆，前者就比后者的苦味强烈，是因为罗布斯塔豆的苦味物质含量较高（咖啡的苦味物质主要有绿原酸、葫芦巴碱和咖啡因等）。另外，如果瑕疵豆过多，在浅焙时也会造成难以下咽的杂苦味。</p>
+<p>其次是<code>烘焙程度</code>，烘焙程度<strong>越高</strong>，咖啡的苦味就<strong>越重</strong>。这是因为随着烘焙时间的延长，酚类化合物等苦性物质就会产生得越多。</p>
+<p>而 咖啡里的苦味无挥发性，只有水溶性。所以我们才会闻着咖啡很香醇，喝到嘴里却有苦味。</p>
+</li>
+<li><p>酸</p>
+<p>咖啡豆的成分里含有大量的有机酸，大约占到豆子重量的 11%～ 16%，这些有机酸包含绿原酸、圭宁酸、柠檬酸、苹果酸，以及少许的乳酸、甲酸、醋酸等等，这些有机酸正是咖啡众多芳香风味的主要来源。</p>
+<p>咖啡的酸度大小与烘焙程度有密切的关系。对于同一款豆子，一般浅烘、中浅烘的咖啡会带有很明显的柠檬酸、苹果酸等果酸风味。而随着烘焙程度的加深，这些酸性物质开始降解，咖啡的风味中焦糖或巧克力风味开始变多。</p>
+<p>所以，烘焙程度越浅，果酸越多；烘焙程度越深，果酸越少。</p>
+</li>
+<li><p>甜</p>
+<p>咖啡生豆中最大的成分就是糖类物质，包含多糖和单糖，占比达 38%-50%，这些糖类物质有蔗糖、葡萄糖、阿拉伯糖、甘露糖、半乳糖、鼠李糖和木糖等。</p>
+<p>由于烘焙后，咖啡的甜味会被酸、苦、咸等成分干扰，不易被感知。</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">不同甜度影响因素</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">咖啡树的生长环境不同</td>
+<td align="center">一般来说，生长在高海拔地带的咖啡甜度更高，是因为海拔越高，气温越低，咖啡的生长就越缓慢，咖啡就能够积累更多的糖分和风味物质</td>
+</tr>
+<tr>
+<td align="center">咖啡果的成熟度不同</td>
+<td align="center">红熟的豆子比未熟的豆子甜度更高</td>
+</tr>
+<tr>
+<td align="center">咖啡生豆的处理方式不同</td>
+<td align="center">日晒法和蜜处理的豆子通常比水洗法处理的豆子更甜</td>
+</tr>
+<tr>
+<td align="center">咖啡豆品种不同</td>
+<td align="center">阿拉比卡豆比罗布斯塔豆的蔗糖含量高 2 倍，因此阿拉比卡豆的风味更加细腻、深邃、优雅；而在阿拉比卡豆种里，铁皮卡、波旁又比卡蒂姆的甜度更高</td>
+</tr>
+<tr>
+<td align="center">咖啡豆的烘焙程度</td>
+<td align="center">随着烘焙程度加深，咖啡的甜感逐渐减弱，苦度不断攀升，深度烘焙阶段及以后的咖啡基本上已经不具备明显的甜度了</td>
+</tr>
+</tbody></table>
+<p>在 SCA 的标准下，一杯好喝的精品咖啡的标准是：<code>入口以甜为主，伴有愉悦的酸，少苦，甚至不苦</code></p>
+<h1 id="咖啡店里的各种花式咖啡有何区别？"><a href="#咖啡店里的各种花式咖啡有何区别？" class="headerlink" title="咖啡店里的各种花式咖啡有何区别？"></a>咖啡店里的各种花式咖啡有何区别？</h1><p>其实，所有咖啡按照成分上的不同大致可以分为两类：</p>
+<ul>
+<li>黑咖啡</li>
+<li>非黑咖啡</li>
+</ul>
+<blockquote>
+<p>百度百科：黑咖啡（原味）是不加任何修饰的咖啡，黑咖啡带来的是品味咖啡的原始感受。黑咖啡集合了咖啡<code>香甘醇酸苦</code>五味的特点。</p>
+</blockquote>
+<p>所以说，黑咖啡的本质是<code>无添加</code>，除了<code>咖啡豆、水</code>这两味原料外，不再添加其他任何配料，它强调的是咖啡的原汁原味，注重咖啡最原始的味道。</p>
+<h2 id="一-黑咖啡"><a href="#一-黑咖啡" class="headerlink" title="(一) 黑咖啡"></a>(一) 黑咖啡</h2><p><strong>咖啡中加水</strong></p>
+<ol>
+<li><p>浓度不同</p>
+<ul>
+<li><p>意式浓缩咖啡（Espresso）<br>意式浓缩<strong>萃取原理</strong>：用高压将热水推过研磨度极细的咖啡粉，由此可以萃取出浓度更高、更醇厚的咖啡液。一杯合格的意式浓缩需要有其标志性的咖啡油脂，也就是表面那一层棕褐色的泡沫。</p>
+<p>市面上的花式咖啡，如拿铁、卡布奇诺、美式等均以意式浓缩为<strong>基底</strong>。</p>
+</li>
+<li><p>美式咖啡（Americano）<br>向意式浓缩中加入热水，如 1 份意式浓缩+6-7 份热水，即可得到一杯美式。</p>
+</li>
+<li><p>淡黑咖啡 / 澳黑（Long Black）<br>向热水中加入意式浓缩，即可得到一杯淡黑咖啡。</p>
+</li>
+<li><p>加长浓缩（Lungo）<br>和意式浓缩的做法一样，只不过需要在其他条件不变的情况下，延长注水时间。</p>
+<p>也就是说，两种咖啡的用粉量相同，但是加长浓缩的用水量比意式浓缩更多。</p>
+</li>
+<li><p>意式超浓缩咖啡 / 芮斯崔朵（Ristretto）<br>用更大的粉量萃取出比意式浓缩（Espresso）更高浓度的咖啡。研磨度比 Espresso 更细一些，浓度在 12-16%（Espresso 是 8-12%）。</p>
+</li>
+</ul>
+</li>
+<li><p>萃取方式不同</p>
+<ul>
+<li><p>冷萃咖啡（Cold Brew Coffee）<br>冷萃咖啡：用室温或室温以下的冷水泡制，冷藏 12 小时以上，具体时间可以根据个人喜好调节。</p>
+<p>热水冲泡咖啡粉会增加高分子化合物的溶解率，溶出的咖啡液苦度也就更高；而用冷水浸泡时，这些苦性物质的溶解率就会较低，溶解到咖啡液的也就很少，所以冷萃出来的咖啡苦度是比较低的，且更容易提升咖啡的甘醇度。</p>
+<p>但因为咖啡在冷水中的萃取速度比较慢，所以制作成咖啡液也需要更长的时间、更高的生产成本，这也是市场上冷萃液价格偏贵的最大原因。<br><img src="/images/coffee/%E5%86%B7%E8%90%83%E5%92%96%E5%95%A1.jpeg" alt="冷萃咖啡"></p>
+</li>
+<li><p>冰滴咖啡（Dutch Coffee）<br>冰滴咖啡是冷萃咖啡的一种，是冰块融化后的冰水滴落到咖啡粉上萃取出来的咖啡液。<br><img src="/images/coffee/%E5%86%B0%E6%BB%B4%E5%92%96%E5%95%A1.webp" alt="冰滴咖啡"></p>
+</li>
+<li><p>手冲咖啡<br>纯手工冲泡出来的咖啡，整个萃取过程中都需要人为把握和调控，对于咖啡师个人功力要求很高。<br><img src="/images/coffee/%E6%89%8B%E5%86%B2%E5%92%96%E5%95%A1.jpg" alt="手冲咖啡"></p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="二-非黑咖啡"><a href="#二-非黑咖啡" class="headerlink" title="(二) 非黑咖啡"></a>(二) 非黑咖啡</h2><p><strong>黑咖啡中加奶</strong></p>
+<ul>
+<li><p>拿铁咖啡（Latte）<br>向意式浓缩中加入牛奶，牛奶的用量一般是咖啡的 2 倍以上。</p>
+</li>
+<li><p>Dirty（脏咖啡）<br>追求咖啡液与牛奶互不相融的视觉效果，且浓缩咖啡的油脂覆盖在饮品表面，看起来脏脏的。</p>
+<p>因此，制作 dirty 是先向杯中倒入冰博克牛奶，再倒入意式超浓缩咖啡（Ristretto）。</p>
+<blockquote>
+<p>冰博克（Eisbock）<br>冰博克其实就是冷冻提纯牛奶，比普通牛奶更加香甜、浓厚。我们在咖啡店常常看到厚乳拿铁，其中“厚乳”指的也是冰博克。<br>一瓶牛奶中，大部分物质都是水，水的沸点是 100℃，冰点是 0℃，牛奶中除了水以外的固态物质一般来讲不会超过 18%，而且这些物质的冰点温度比水还要低，所以牛奶如果结冰的话，水会先结冰，等温度到了这些物质的冰点时，才会慢慢全部结冰。解冻时则反过来，这些物质会先融化，然后水才会融化，这时候就会出现水乳分离的现象。<br>所以，我们把牛奶冷冻后，使其物质和水分分离，而这些物质会在牛奶解冻时更早被融解出来。我们提取的这些物质则是牛奶中口感最醇厚最香甜的部分，这也就是冰博克提纯牛奶的制作过程。</p>
+</blockquote>
+<p><img src="/images/coffee/%E5%86%B0%E5%8D%9A%E5%AE%A2.jpeg" alt="冰博客"></p>
+<ul>
+<li><p>卡布奇诺（Cappuccino）<br>向意式浓缩咖啡（Espresso）中加入蒸汽加热过的牛奶和奶泡。</p>
+</li>
+<li><p>澳白（Flat White）<br>向意式超浓缩咖啡（Ristretto）中加入薄奶泡的牛奶。<br>与卡布奇诺之间的区别在于，澳白奶泡厚度更低，且使用的是意式超浓缩咖啡（Ristretto）</p>
+</li>
+<li><p>玛奇朵（Macchiato）<br>Macchiato 在意大利语中的含义是：在一个物体的表面留下印记。<br>玛奇朵咖啡的做法就是在意式浓缩咖啡（Espresso）表面铺上薄薄一层奶泡。而在意大利点玛奇朵，仅仅在 Espresso 表面点上一滴奶泡。<br>奶泡的作用是改变表面油脂的口感。</p>
+</li>
+</ul>
+<p><img src="/images/coffee/%E5%A5%B6%E5%92%96.png" alt="奶咖"></p>
+<p><strong>黑咖啡中加入其它物质</strong></p>
+<ul>
+<li><p>摩卡（Mocha）<br>意式浓缩咖啡（Espresso）中加入巧克力酱和牛奶（牛奶的量要大于巧克力）（也有加可可粉）</p>
+</li>
+<li><p>康宝蓝（Espresso Con Panna）<br>向意式浓缩咖啡中加入适量的鲜奶油。</p>
+</li>
+<li><p>维也纳咖啡（Viennese Coffee）<br>向意式浓缩咖啡中加入巧克力糖浆和鲜奶油。</p>
+</li>
+<li><p>爱尔兰咖啡（Irish Coffee）<br>在爱尔兰威士忌中加入焦糖，用酒精灯加热，待焦糖融化后，在杯中加入咖啡，然后再加入鲜奶油。</p>
+</li>
+</ul>
+<p><img src="/images/coffee/%E5%8A%A0%E5%85%B6%E4%BB%96.webp" alt="加其他"></p>
+</li>
+</ul>
+<h1 id="喝咖啡的好与坏"><a href="#喝咖啡的好与坏" class="headerlink" title="喝咖啡的好与坏"></a>喝咖啡的好与坏</h1><h2 id="（一）-喝咖啡有什么坏处"><a href="#（一）-喝咖啡有什么坏处" class="headerlink" title="（一） 喝咖啡有什么坏处"></a>（一） 喝咖啡有什么坏处</h2><ol>
+<li><p>刺激肠胃</p>
+<p>空腹喝咖啡确实可能会导致肠胃不适（主要是因为刺激胃酸分泌），所以尽量不要空腹喝咖啡。<br>如果出现肠胃不适，胃里酸酸的感觉，多喝点水，吃一些苏打饼干有帮助恢复的作用。</p>
+</li>
+<li><p>导致心慌</p>
+<ul>
+<li><p>咖啡因不耐受</p>
+<p>有的人天生对咖啡因的耐受度就低，喝一杯就容易心跳加速、焦虑心慌，对于这类人我们也建议尽量少喝咖啡，尤其是浓缩咖啡或者黑咖啡，像加入大量牛奶稀释的奶咖倒是可以适量喝一些。</p>
+</li>
+<li><p>摄入咖啡因过量</p>
+<p>根据美国食品药品监管局、欧盟食品安全局、加拿大卫生部、澳新食品标准局等权威机构的建议，对于健康的一般成年人，<strong>每天摄入咖啡因的上限是 400mg</strong> ，孕妇和哺乳期妇女不要超过 200mg。持续饮用过量可能反过来导致「咖啡因中毒」，伴随烦躁、焦虑、易怒、激动、肌肉震颤、失眠、头痛、利尿、感觉障碍（例如耳鸣）、心血管症状（例如心动过速、心律失常）和胃肠道不适（例如恶心、呕吐、腹泻）等不良反应。</p>
+</li>
+</ul>
+</li>
+<li><p>升高血压</p>
+<p>喝咖啡会在<strong>短期</strong>内使血压升高，因此本身患有高血压的人群应避免喝咖啡，同时避免饮用任何含有咖啡因的饮品。</p>
+<ul>
+<li>咖啡因可能导致交感神经兴奋，使心率增快、血压升高；</li>
+<li>咖啡因可能导致血管收缩、血液循环加快，从而使血压升高。</li>
+</ul>
+</li>
+<li><p>导致牙齿变黄</p>
+<p>这是因为咖啡里含有一种深棕色的物质——<code>单宁酸</code>，<code>单宁酸</code>长期停留在牙齿上，就会慢慢渗透到牙齿的内部，造成牙齿染色。</p>
+<p>只要在喝咖啡时稍加注意，就能有效避免牙齿被染色。</p>
+<ul>
+<li>喝咖啡要速战速决。尽量不要长时间小口啜饮，咖啡与牙齿接触的时间越长，越容易染色。</li>
+<li>使用吸管。温度允许的话，可以使用吸管来减少咖啡和牙齿的接触。</li>
+<li>嚼口香糖，能够刺激唾液分泌，从而中和咖啡的单宁酸</li>
+<li>养成勤漱口、爱刷牙的好习惯。在喝完咖啡后，尽可能漱口，然后再刷牙（不要先刷牙哦，因为咖啡的酸性物质对牙齿有一定的腐蚀性，此时刷牙，容易造成牙齿表面的磨损）。</li>
+</ul>
+</li>
+<li><p>影响钙质吸收</p>
+<p>医学研究表明，咖啡喝到一定量有阻碍钙质吸收的可能，因此像骨质疏松的人或者老年人，建议少喝咖啡，多多补钙。</p>
+</li>
+<li><p>对孕妇和儿童影响较大</p>
+<p>孕妇代谢咖啡因的能力会减弱。新生儿代谢咖啡因的速度非常慢。</p>
+</li>
+<li><p>影响睡眠</p>
+<p>咖啡因的确会影响睡眠，但是和摄入量、以及个人体质有关。<br>一般来说，想晚上好好睡觉，建议最迟在睡觉前 6 小时就停止摄入咖啡。每天的咖啡因摄入量也不建议超过 400mg。</p>
+<p>简单确定咖啡因不影响睡眠的方法：</p>
+<p>（1）不同种类的咖啡中咖啡因含量，方便大家知道自己摄入了多少咖啡因</p>
+<blockquote>
+<p>➔ 一包挂耳咖啡（10g 粉）的咖啡因含量约为 80-100mg；<br>➔ 一条冷萃咖啡（33ml 液）的咖啡因含量约为 100-150mg；<br>➔ 一杯中杯美式（350ml 液）的咖啡因含量约为 150-200mg；<br>➔ 一杯中杯拿铁（350ml 液）的咖啡因含量约为 75mg；<br>➔ 一条速溶咖啡（10-20g 粉）的咖啡因含量约为 75-100mg。</p>
+</blockquote>
+<p>（2）有长期喝咖啡或习惯的人，只要控制饮用时间和睡前残留量，就能通过估算，尽量减少对睡眠的影响</p>
+<ul>
+<li>饮用时间：需要知道咖啡因在体内的效果能持续多久？</li>
+<li>睡前残留量：需要知道睡前体内有多少咖啡因？</li>
+</ul>
+<blockquote>
+<p><code>半衰期</code>（指人体将摄入的咖啡因转化掉一半所用的时间）。咖啡因的半衰期一般是 3-6 小时。<br>下面开始估算，以<code>半衰期</code>6 小时为例：当你早上 10 点摄入 100mg 咖啡因后，过了 6 个小时，到下午 4 点左右，还在你体内的咖啡因约为 50mg ；再过 6 个小时，到晚上 10 点左右，你体内的咖啡因含量约为 25mg。<br>这样，我们就算出了大概睡前咖啡因在体内的含量。</p>
+</blockquote>
+<p>（3）判断睡前咖啡因在体内的量是否影响睡眠</p>
+<p>咖啡因在人体内也有起作用的最小量，但是到底多少毫克的咖啡因能影响一个人的睡眠，这个非常因人而异。<br>例如：如果你平时习惯喝可乐，睡前喝一罐可乐不影响你睡眠，那么基本上可以认为 40mg 左右的咖啡因是不影响你睡觉的。（一罐可乐的咖啡因含量约为 30-40mg）。</p>
+</li>
+</ol>
+<h2 id="（二）喝咖啡有什么好处"><a href="#（二）喝咖啡有什么好处" class="headerlink" title="（二）喝咖啡有什么好处"></a>（二）喝咖啡有什么好处</h2><ol>
+<li><p>提神醒脑</p>
+<p>在我们每天的日常生活中，随着人体能量的消耗（脑力活动和体力活动都算），身体会产生一种物质——<code>腺苷</code>，它平时游离在血液中。在人体内还有一种物质，叫做<code>腺苷受体</code>。当<code>腺苷</code>和<code>腺苷受体</code>结合时，就会给大脑传达疲劳的信号。这是人体防止过劳的一种自我保护机制。</p>
+<p>当<code>腺苷受体</code>结合了足够多的<code>腺苷</code>，大脑就会不断接收到身体发出的疲劳信号，于是开始发动机能，抑制神经兴奋，让人产生困意和疲倦感。</p>
+<p>而咖啡因的分子结构和<code>腺苷</code>十分相似，当它们进入人体后也能和<code>腺苷受体</code>结合，从而就阻断了<code>腺苷</code>和<code>腺苷受体</code>的结合。浓度高时，咖啡因甚至能将所有<code>腺苷受体</code>都霸占了。</p>
+<p>因为咖啡因是外来入侵者，它和<code>腺苷受体</code>结合是不会释放疲劳信号的。当咖啡因占据了所有<code>腺苷受体</code>时，大脑基本上就接收不到任何疲劳信号了。</p>
+</li>
+<li><p>消水肿<br>原理是咖啡因能够加速身体血液循环和新陈代谢，将多余的水分排出体外，利水利尿，有很好的消水肿效果。因此针对生理性水肿，喝咖啡是有效的。</p>
+</li>
+<li><p>辅助减肥</p>
+<ul>
+<li>热量极低</li>
+<li>咖啡因能够刺激肠胃蠕动，加速身体的新陈代谢（可使新陈代谢率提升 3%），促进消化，利尿利排便，能够帮助缓解便秘，促进体内脂肪的燃烧分解</li>
+<li>抑制食欲<blockquote>
+<p>（1）肠胃不适，食欲降低；<br>（2）大脑对「饥饿」和「渴」这两种信号的感知经常会混淆，所以感到「饥饿」的时候，很有可能是「渴」了，喝点水有点饱腹感，就能减少食欲。在这种原理下，喝水一样能起到缩小胃口的作用。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>提升耐力运动表现</p>
+<p>咖啡因能提升运动表现，增加能量消耗，喝完咖啡（注意是黑咖啡）之后去健身，事半功倍。<br>在运动期间节省肌糖原的消耗，能延长人们进行高强度运动的时间。</p>
+</li>
+<li><p>抗氧化</p>
+<p>咖啡的抗氧化物含量超越了牛奶、茶、西红柿和红酒等常见的抗氧化物食物。</p>
+<ul>
+<li><p>咖啡中含抗氧化物最多的成分是<code>绿原酸</code>。</p>
+<blockquote>
+<p><code>绿原酸</code>具有广泛的生物活性，能够抗菌、抗病毒、抑制突变，有助于清除自由基，减缓皮肤皱纹的产生，能够让肌肤变得更加光滑细腻，是肌肤的抗衰神器。</p>
+</blockquote>
+</li>
+<li><p>咖啡豆在烘焙过程中发生梅纳褐变反应时生成的<code>蛋白黑素</code>（或称<code>类黑精素</code>），也是强效的抗氧化物，并且含量高达 25%。</p>
+</li>
+<li><p>还有一种很强的天然抗氧化物质——<code>黄酮类化合物</code>，它可有效清除体内的自由基，抗菌消炎，抗衰老。尤其是花青素成分，其抗氧化能力是维生素 E 的 10 倍以上。因此，黄酮类化合物被广泛应用于各种营养保健品、药物和化妆品中。</p>
+</li>
+</ul>
+</li>
+<li><p>咖啡因能降低心血管疾病的风险</p>
+<ul>
+<li><p>长期摄入咖啡因能保护心血管，降低心血管疾病的风险。</p>
+</li>
+<li><p>咖啡因摄入过量可能会出现心悸、心慌、头晕等症状；但每个人对咖啡因的耐受度不同，需要根据自己的体质来限定咖啡因的摄入。一般来说，每天 400mg 咖啡因的摄入是没有问题的。</p>
+</li>
+</ul>
+</li>
+<li><p>咖啡因对长期记忆能力有帮助<br>从现有的研究来看，长期或规律性地摄入咖啡因对记忆力有积极的效果。<br>长期摄入咖啡因和记忆力之间的正向关系，有可能和咖啡因的抗癫痫、以及神经保护作用有关。<br>阿兹海默症（老年痴呆症）的病程中包括「胆碱能神经元」的退化，导致神经递质「乙酰胆碱」水平下降。在 66 岁以上的老年人中，更容易出现「东莨菪碱」（抗胆碱药物）损害记忆的副作用。这可能表明，「乙酰胆碱」水平的下降与老年痴呆症之间存在一些潜在的联系。</p>
+<p>而令人惊讶的是，通过让被试摄入 250mg 咖啡因，缓解了「东莨菪碱」损害记忆的副作用。由此可见咖啡因可能对长期记忆能力有帮助，并且可能会对老年人的记忆缺陷问题（比如老年痴呆症）有预防和改善的作用。</p>
+</li>
+</ol>
+<h1 id="SCA-咖啡课程体系"><a href="#SCA-咖啡课程体系" class="headerlink" title="SCA 咖啡课程体系"></a>SCA 咖啡课程体系</h1><ol>
+<li><p>SCA（Specialty Coffee Association，国际精品咖啡协会）</p>
+</li>
+<li><p>SCA 咖啡师资格证<code>6大模块</code>全系列：</p>
+<ul>
+<li>INTRODUCTION TO COFFEE 咖啡基础知识</li>
+<li>BARISTA 咖啡师(意式咖啡)</li>
+<li>BREWING 咖啡冲煮(手冲咖啡)</li>
+<li>SENSORY 感官杯测(感官技能)</li>
+<li>ROASTING 咖啡烘焙</li>
+<li>GREEN BEAN 咖啡生豆</li>
+</ul>
+</li>
+<li><p>每个模块有<code>三个等级（对应分数）</code>：<br>（基础咖啡知识 模块只有一个等级）</p>
+<ul>
+<li>初级 Foundation (5 points) 初级(5 分)</li>
+<li>中级 Intermediate (10 points)中级(10 分)</li>
+<li>高级 Professinal (25 points) 高级(25 分)</li>
+</ul>
+</li>
+<li><p>在学满 100 分些之后，可以申请 SCA 的咖啡文凭 AST 教师认证证书</p>
+</li>
+<li><p>普遍适用人群：</p>
+<ul>
+<li>咖啡师证书 - 对意式咖啡技能升华</li>
+<li>咖啡冲煮证书 - 对手冲咖啡有严格要求</li>
+<li>感官杯测证书 - 想要喝好咖啡且对咖啡有追求，个人觉得也是其他课程的一个基础</li>
+<li>咖啡烘焙证书 - 咖啡烘焙师和精品咖啡馆</li>
+<li>咖啡生豆证书 - 生豆贸易</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p>参考：<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/471253412">https://zhuanlan.zhihu.com/p/471253412</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/498984603">https://zhuanlan.zhihu.com/p/498984603</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/107033626">https://zhuanlan.zhihu.com/p/107033626</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/130345064">https://zhuanlan.zhihu.com/p/130345064</a></p>
+</div>
+    <div class="article-aside">
+      <div class="sticky-layout">
+        <div class="aside-toc">
+          <div class="toc-head">目录</div>
+          <div class="toc-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%92%96%E5%95%A1%E8%B5%B7%E6%BA%90"><span class="toc-number">1.</span> <span class="toc-text">咖啡起源</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%92%96%E5%95%A1%E6%98%AF%E5%A6%82%E4%BD%95%E8%A2%AB%E5%8F%91%E7%8E%B0%E7%9A%84%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">咖啡是如何被发现的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%92%96%E5%95%A1%E8%B1%86%E6%98%AF%E4%BB%80%E4%B9%88%E8%B1%86%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">咖啡豆是什么豆？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%92%96%E5%95%A1%E7%9A%84%E5%86%B2%E6%B3%A1%E6%8A%80%E6%9C%AF%E5%8F%91%E5%B1%95%E7%AE%80%E5%8F%B2"><span class="toc-number">1.3.</span> <span class="toc-text">咖啡的冲泡技术发展简史</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%92%96%E5%95%A1%E8%B1%86%E9%83%BD%E6%9C%89%E5%93%AA%E4%BA%9B%E5%93%81%E7%A7%8D"><span class="toc-number">2.</span> <span class="toc-text">咖啡豆都有哪些品种</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%92%96%E5%95%A1%E7%9A%84%E4%B8%BB%E4%BA%A7%E5%8C%BA%E5%8F%8A%E9%A3%8E%E5%91%B3%E7%89%B9%E8%89%B2"><span class="toc-number">3.</span> <span class="toc-text">咖啡的主产区及风味特色</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%92%96%E5%95%A1%E8%B1%86%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F"><span class="toc-number">4.</span> <span class="toc-text">咖啡豆处理方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%92%96%E5%95%A1%E8%B1%86%E7%83%98%E7%84%99%E7%A8%8B%E5%BA%A6"><span class="toc-number">5.</span> <span class="toc-text">咖啡豆烘焙程度</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%93%81%E5%91%B3%E5%92%96%E5%95%A1%E7%9A%84%E9%85%B8%E7%94%9C%E8%8B%A6"><span class="toc-number">6.</span> <span class="toc-text">品味咖啡的酸甜苦</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%92%96%E5%95%A1%E5%BA%97%E9%87%8C%E7%9A%84%E5%90%84%E7%A7%8D%E8%8A%B1%E5%BC%8F%E5%92%96%E5%95%A1%E6%9C%89%E4%BD%95%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">7.</span> <span class="toc-text">咖啡店里的各种花式咖啡有何区别？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-%E9%BB%91%E5%92%96%E5%95%A1"><span class="toc-number">7.1.</span> <span class="toc-text">(一) 黑咖啡</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E9%9D%9E%E9%BB%91%E5%92%96%E5%95%A1"><span class="toc-number">7.2.</span> <span class="toc-text">(二) 非黑咖啡</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%96%9D%E5%92%96%E5%95%A1%E7%9A%84%E5%A5%BD%E4%B8%8E%E5%9D%8F"><span class="toc-number">8.</span> <span class="toc-text">喝咖啡的好与坏</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89-%E5%96%9D%E5%92%96%E5%95%A1%E6%9C%89%E4%BB%80%E4%B9%88%E5%9D%8F%E5%A4%84"><span class="toc-number">8.1.</span> <span class="toc-text">（一） 喝咖啡有什么坏处</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E5%96%9D%E5%92%96%E5%95%A1%E6%9C%89%E4%BB%80%E4%B9%88%E5%A5%BD%E5%A4%84"><span class="toc-number">8.2.</span> <span class="toc-text">（二）喝咖啡有什么好处</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SCA-%E5%92%96%E5%95%A1%E8%AF%BE%E7%A8%8B%E4%BD%93%E7%B3%BB"><span class="toc-number">9.</span> <span class="toc-text">SCA 咖啡课程体系</span></a></li></ol></div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+   
+  <div id="comment">
+    <div id="giscus-container" class="giscus"></div>
+  </div>
+   
+</div>
+
+                        <footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 2022 - 2023 G.Yun. Blog
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @G.Yun.
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        <script src="/js/background.min.js"></script>
+        <script src="/js/fireworks.min.js"></script>
+        
+
+<script
+    src="https://giscus.app/client.js"
+    data-repo="gyy1129/myrepo"
+    data-repo-id="R_kgDOIkOEZg"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOIkOEZs4CS7xJ"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async
+></script>
+
+
+    </body>
+</html>
